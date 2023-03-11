@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "lostfeatures:block/baobab_planks",
+    "side": "lostfeatures:block/baobab_planks",
+    "top": "lostfeatures:block/baobab_planks"
+  }
+}

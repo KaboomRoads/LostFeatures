@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.kaboomroads.lostfeatures.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AxeItemAccessor",
+    "BeePollinateGoalMixin",
+    "BlazeAccessor",
+    "ButtonBlockInvoker",
+    "CarvedPumpkinBlockMixin",
+    "DoorBlockInvoker",
+    "FoliagePlacerTypeInvoker",
+    "PressurePlateBlockInvoker",
+    "RaidMixin",
+    "SaplingBlockInvoker",
+    "SculkBlockMixin",
+    "SculkVeinSpreaderConfigMixin",
+    "SensorAccessor",
+    "SquidAccessor",
+    "TrapDoorBlockInvoker",
+    "TrunkPlacerTypeInvoker",
+    "VillagerHostilesSensorMixin",
+    "WoodTypeInvoker"
+  ],
+  "client": [
+    "BlockColorsMixin",
+    "ClientLevelMixin",
+    "ItemColorsMixin",
+    "SheetsInvoker"
+  ],
+  "refmap": "lostfeatures.refmap.json",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+  

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "lostfeatures:block/baobab_log_top",
+    "side": "lostfeatures:block/baobab_log"
+  }
+}

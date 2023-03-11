@@ -1,0 +1,110 @@
+{
+  "type": "lostfeatures:termite_nest",
+  "config": {
+    "can_generate_on": "#lostfeatures:termite_nest_can_generate",
+    "can_not_generate_on": "#lostfeatures:termite_nest_can_not_generate",
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "lostfeatures:termite_nest",
+            "Properties": {
+              "termites": "true"
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "minecraft:terracotta"
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "minecraft:coarse_dirt"
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "x_size": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 2,
+        "min_inclusive": 1
+      }
+    },
+    "z_size": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 2,
+        "min_inclusive": 1
+      }
+    },
+    "height": {
+      "type": "minecraft:weighted_list",
+      "distribution": [
+        {
+          "data": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 4,
+              "min_inclusive": 2
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "type": "minecraft:uniform",
+            "value": {
+              "max_inclusive": 3,
+              "min_inclusive": 2
+            }
+          },
+          "weight": 1
+        }
+      ]
+    },
+    "depth": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 2,
+        "min_inclusive": 1
+      }
+    },
+    "spire_chance": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_exclusive": 0.25,
+        "min_inclusive": 0.1
+      }
+    },
+    "spire_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "lostfeatures:termite_spires",
+        "Properties": {
+          "termites": "true"
+        }
+      }
+    },
+    "max_spire_count": {
+      "type": "minecraft:uniform",
+      "value": {
+        "max_inclusive": 2,
+        "min_inclusive": 1
+      }
+    },
+    "last_resort_spire": true,
+    "core": true,
+    "core_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "lostfeatures:termite_nest_core"
+      }
+    }
+  }
+}

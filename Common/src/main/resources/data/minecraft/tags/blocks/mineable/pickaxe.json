@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lostfeatures:copper_button",
+    "lostfeatures:termite_nest_core",
+    "lostfeatures:termite_nest",
+    "lostfeatures:termite_spires"
+  ]
+}

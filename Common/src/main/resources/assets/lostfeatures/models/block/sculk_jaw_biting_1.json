@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "side": "lostfeatures:block/sculk_flesh",
+    "top": "lostfeatures:block/sculk_jaw_biting_1",
+    "bottom": "lostfeatures:block/sculk_flesh"
+  }
+}

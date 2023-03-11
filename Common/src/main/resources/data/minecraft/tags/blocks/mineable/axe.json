@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "lostfeatures:baobab_log",
+    "lostfeatures:baobab_wood",
+    "lostfeatures:stripped_baobab_log",
+    "lostfeatures:stripped_baobab_wood",
+    "lostfeatures:baobab_planks",
+    "lostfeatures:baobab_stairs",
+    "lostfeatures:baobab_slab",
+    "lostfeatures:baobab_fence",
+    "lostfeatures:baobab_fence_gate",
+    "lostfeatures:baobab_door",
+    "lostfeatures:baobab_trapdoor",
+    "lostfeatures:baobab_button",
+    "lostfeatures:baobab_pressure_plate",
+    "lostfeatures:baobab_sign",
+    "lostfeatures:baobab_wall_sign",
+    "lostfeatures:baobab_hanging_sign",
+    "lostfeatures:baobab_wall_hanging_sign"
+  ]
+}

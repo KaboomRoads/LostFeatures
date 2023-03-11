@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "lostfeatures:block/baobab_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "lostfeatures:block/baobab_log"
+    },
+    "axis=z": {
+      "model": "lostfeatures:block/baobab_log_horizontal",
+      "x": 90
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "lostfeatures:block/termite_spires"
+  },
+  "render_type": "cutout"
+}

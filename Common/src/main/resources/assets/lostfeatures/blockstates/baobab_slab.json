@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "lostfeatures:block/baobab_slab"
+    },
+    "type=double": {
+      "model": "lostfeatures:block/baobab_planks"
+    },
+    "type=top": {
+      "model": "lostfeatures:block/baobab_slab_top"
+    }
+  }
+}

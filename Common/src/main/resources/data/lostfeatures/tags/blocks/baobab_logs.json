@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "lostfeatures:baobab_log",
+    "lostfeatures:baobab_wood",
+    "lostfeatures:stripped_baobab_log",
+    "lostfeatures:stripped_baobab_wood"
+  ]
+}

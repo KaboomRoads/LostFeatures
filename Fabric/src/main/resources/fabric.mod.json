@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "lostfeatures",
+  "version": "${version}",
+  "name": "Lost Features",
+  "description": "This mod adds features that never made it into the game!",
+  "authors": [
+    "KaboomRoads"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/lostfeatures/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.kaboomroads.lostfeatures.LostFeatures"
+    ],
+    "client": [
+      "com.kaboomroads.lostfeatures.LostFeaturesClient"
+    ]
+  },
+  "mixins": [
+    "lostfeatures.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14",
+    "fabric": "*",
+    "minecraft": "1.19.3",
+    "java": ">=17"
+  }
+}
+  

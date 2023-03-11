@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "lostfeatures:block/baobab_planks",
+    "side": "lostfeatures:block/baobab_planks",
+    "top": "lostfeatures:block/baobab_planks"
+  }
+}
