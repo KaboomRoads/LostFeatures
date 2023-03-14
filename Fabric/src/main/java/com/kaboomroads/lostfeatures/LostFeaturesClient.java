@@ -83,7 +83,8 @@ public class LostFeaturesClient implements ClientModInitializer {
                 ModBlocks.BAOBAB_SAPLING.get(),
                 ModBlocks.BAOBAB_DOOR.get(),
                 ModBlocks.BAOBAB_TRAPDOOR.get(),
-                ModBlocks.TERMITE_SPIRES.get()
+                ModBlocks.TERMITE_SPIRES.get(),
+                ModBlocks.BADLANDS_CACTUS.get()
         );
         Sheets.SIGN_MATERIALS.put(ModWoodTypes.BAOBAB, SheetsInvoker.createSignMaterial(ModWoodTypes.BAOBAB));
         Sheets.HANGING_SIGN_MATERIALS.put(ModWoodTypes.BAOBAB, SheetsInvoker.createHangingSignMaterial(ModWoodTypes.BAOBAB));
@@ -101,6 +102,7 @@ public class LostFeaturesClient implements ClientModInitializer {
                 ModItems.OSTRICH_SPAWN_EGG.get()
         ));
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS).register(entries -> entries.addAfter(Blocks.SCULK_CATALYST, ModBlocks.SCULK_JAW.get()));
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS).register(entries -> entries.addAfter(Blocks.CACTUS, ModBlocks.BADLANDS_CACTUS.get()));
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.NATURAL_BLOCKS).register(entries -> entries.addAfter(Blocks.SCULK_SENSOR,
                 ModBlocks.TERMITE_NEST_CORE.get(),
                 ModBlocks.TERMITE_NEST.get(),

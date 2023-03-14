@@ -69,6 +69,8 @@ public class ModBlocks {
             new TermiteNestBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.PODZOL).requiresCorrectToolForDrops().strength(1.0F, 0.5F)));
     public static final Supplier<Block> TERMITE_SPIRES = Services.REGISTRY.registerBlockAndItem("termite_spires", () ->
             new TermiteSpiresBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.PODZOL).noCollission().requiresCorrectToolForDrops().strength(0.75F, 0.5F)));
+    public static final Supplier<Block> BADLANDS_CACTUS = Services.REGISTRY.registerBlockAndItem("badlands_cactus", () ->
+            new BadlandsCactusBlock(BlockBehaviour.Properties.of(Material.CACTUS).randomTicks().strength(0.4F).sound(SoundType.WOOL)));
 
     private static LeavesBlock leaves(SoundType soundType) {
         return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isValidSpawn(ModBlocks::ocelotOrParrot).isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never));

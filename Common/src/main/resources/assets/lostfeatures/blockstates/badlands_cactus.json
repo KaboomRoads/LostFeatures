@@ -1,0 +1,157 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "lostfeatures:block/badlands_cactus_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "lostfeatures:block/badlands_cactus_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "lostfeatures:block/badlands_cactus_side_rotated",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "lostfeatures:block/badlands_cactus_side_rotated",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "lostfeatures:block/badlands_cactus_side",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "lostfeatures:block/badlands_cactus_side_rotated",
+        "x": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside",
+          "weight": 192
+        },
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside_flower",
+          "weight": 32
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside",
+          "y": 90,
+          "weight": 96
+        },
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside_flower",
+          "y": 90,
+          "weight": 16
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside",
+          "y": 180,
+          "weight": 48
+        },
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside_flower",
+          "y": 180,
+          "weight": 8
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside",
+          "y": 270,
+          "weight": 24
+        },
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside_flower",
+          "y": 270,
+          "weight": 4
+        }
+      ]
+    },
+    {
+      "when": {
+        "up": "false"
+      },
+      "apply": [
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside",
+          "x": 270,
+          "weight": 12
+        },
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside_flower",
+          "x": 270,
+          "weight": 2
+        }
+      ]
+    },
+    {
+      "when": {
+        "down": "false"
+      },
+      "apply": [
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside",
+          "x": 90,
+          "weight": 6
+        },
+        {
+          "model": "lostfeatures:block/badlands_cactus_noside_flower",
+          "x": 90,
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

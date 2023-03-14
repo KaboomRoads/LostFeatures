@@ -48,6 +48,7 @@ public class ModClientEvents {
     public static void onCreativeModeTab(CreativeModeTabEvent.BuildContents event) {
         if (event.getTab() == CreativeModeTabs.NATURAL_BLOCKS) {
             add(event, Blocks.SCULK_CATALYST, ModBlocks.SCULK_JAW.get());
+            add(event, Blocks.CACTUS, ModBlocks.BADLANDS_CACTUS.get());
             add(event, Blocks.FLOWERING_AZALEA_LEAVES, ModBlocks.BAOBAB_LEAVES.get());
             add(event, Blocks.MANGROVE_PROPAGULE, ModBlocks.BAOBAB_SAPLING.get());
             add(event, Blocks.SCULK_SENSOR, ModBlocks.TERMITE_NEST_CORE.get());

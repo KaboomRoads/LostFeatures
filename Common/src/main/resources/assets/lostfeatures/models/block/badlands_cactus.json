@@ -1,32 +1,22 @@
-{   "parent": "block/block",
-    "ambientocclusion": false,
-    "textures": {
-        "particle": "block/cactus_side",
-        "bottom": "block/cactus_bottom",
-        "top": "block/cactus_top",
-        "side": "block/cactus_side"
-    },
-    "elements": [
-        {   "from": [ 0, 0, 0 ],
-            "to": [ 16, 16, 16 ],
-            "faces": {
-                "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" },
-                "up":   { "uv": [ 0, 0, 16, 16 ], "texture": "#top", "cullface": "up" }
-            }
-        },
-        {   "from": [ 0, 0, 1 ],
-            "to": [ 16, 16, 15 ],
-            "faces": {
-                "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#side" },
-                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side" }
-            }
-        },
-        {   "from": [ 1, 0, 0 ],
-            "to": [ 15, 16, 16 ],
-            "faces": {
-                "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#side" },
-                "east": { "uv": [ 0, 0, 16, 16 ], "texture": "#side" }
-            }
-        }
-    ]
+{
+	"parent": "block/block",
+	"ambientocclusion": true,
+	"textures": {
+		"particle": "lostfeatures:block/badlands_cactus_top",
+		"inside": "lostfeatures:block/badlands_cactus"
+	},
+	"elements": [
+		{
+			"from": [4, 4, 4],
+			"to": [12, 12, 12],
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "north"},
+				"east": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "east"},
+				"south": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "south"},
+				"west": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "west"},
+				"up": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "up"},
+				"down": {"uv": [14, 14, 2, 2], "texture": "#inside", "cullface": "down"}
+			}
+		}
+	]
 }

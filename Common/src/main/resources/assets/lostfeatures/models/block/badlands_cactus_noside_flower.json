@@ -1,0 +1,86 @@
+{
+	"ambientocclusion": true,
+	"textures": {
+		"0": "lostfeatures:block/cactus_flower",
+		"1": "lostfeatures:block/badlands_cactus_top",
+		"particle": "lostfeatures:block/badlands_cactus_top"
+	},
+	"elements": [
+		{
+			"name": "flower",
+			"from": [6, 7, 3.66718],
+			"to": [8, 9, 3.66718],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [7, 8, 3]},
+			"faces": {
+				"north": {"uv": [0, 0, 2, 2], "texture": "#0"},
+				"south": {"uv": [0, 2, 2, 4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [8, 7, 3.6672],
+			"to": [10, 9, 3.6672],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [9, 8, 3]},
+			"faces": {
+				"north": {"uv": [2, 0, 4, 2], "texture": "#0"},
+				"south": {"uv": [2, 2, 4, 4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [7, 8, 3.6672],
+			"to": [9, 10, 3.6672],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 9, 3]},
+			"faces": {
+				"north": {"uv": [0, 4, 2, 6], "texture": "#0"},
+				"south": {"uv": [4, 0, 6, 2], "texture": "#0"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [7, 6, 3.6672],
+			"to": [9, 8, 3.6672],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 7, 3]},
+			"faces": {
+				"north": {"uv": [2, 4, 4, 6], "texture": "#0"},
+				"south": {"uv": [4, 2, 6, 4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [8, 7, 3],
+			"to": [8, 9, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 3.5]},
+			"faces": {
+				"east": {"uv": [4, 4, 5, 6], "texture": "#0"},
+				"west": {"uv": [5, 4, 6, 6], "texture": "#0"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [7, 8, 3],
+			"to": [9, 8, 4],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 8, 3.5]},
+			"faces": {
+				"up": {"uv": [2, 7, 0, 6], "texture": "#0"},
+				"down": {"uv": [8, 0, 6, 1], "texture": "#0"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [7.5, 7.5, 3.999],
+			"to": [8.5, 8.5, 3.999],
+			"rotation": {"angle": 0, "axis": "x", "origin": [8, 8, 3.5]},
+			"faces": {
+				"north": {"uv": [6, 1, 7, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 4, 4],
+			"to": [12, 12, 4],
+			"faces": {
+				"north": {"uv": [4, 4, 12, 12], "texture": "#1"}
+			}
+		}
+	]
+}

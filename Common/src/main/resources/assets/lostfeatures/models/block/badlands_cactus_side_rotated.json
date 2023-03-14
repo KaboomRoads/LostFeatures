@@ -1,0 +1,21 @@
+{
+	"ambientocclusion": true,
+	"textures": {
+		"particle": "lostfeatures:block/badlands_cactus",
+		"texture": "lostfeatures:block/badlands_cactus",
+		"top": "lostfeatures:block/badlands_cactus_top"
+	},
+	"elements": [
+		{
+			"from": [4, 4, 0],
+			"to": [12, 12, 4],
+			"faces": {
+				"north": {"uv": [12, 4, 4, 12], "texture": "#top", "cullface": "north"},
+				"east": {"uv": [4, 8, 12, 12], "rotation": 270, "texture": "#texture"},
+				"west": {"uv": [4, 4, 12, 8], "rotation": 90, "texture": "#texture"},
+				"up": {"uv": [4, 0, 12, 4], "rotation": 180, "texture": "#texture"},
+				"down": {"uv": [4, 12, 12, 16], "texture": "#texture"}
+			}
+		}
+	]
+}

@@ -1,0 +1,16 @@
+{
+	"ambientocclusion": true,
+	"textures": {
+		"particle": "lostfeatures:block/badlands_cactus_top",
+		"inside": "lostfeatures:block/badlands_cactus_top"
+	},
+	"elements": [
+		{
+			"from": [4, 4, 4],
+			"to": [12, 12, 4],
+			"faces": {
+				"north": {"uv": [4, 4, 12, 12], "texture": "#inside"}
+			}
+		}
+	]
+}
