@@ -41,7 +41,7 @@ public class BadlandsCactusBlock extends PipeBlock {
         BlockState south = blockGetter.getBlockState(blockPos.south());
         BlockState west = blockGetter.getBlockState(blockPos.west());
         return defaultBlockState()
-                .setValue(DOWN, below.is(this) || below.is(ModBlocks.BADLANDS_CACTUS.get()) || (below.is(Blocks.SAND) || below.is(Blocks.RED_SAND)))
+                .setValue(DOWN, below.is(this) || below.is(ModBlocks.BADLANDS_CACTUS.get()) || below.is(Blocks.SAND) || below.is(Blocks.RED_SAND))
                 .setValue(UP, above.is(this) || above.is(ModBlocks.BADLANDS_CACTUS.get()))
                 .setValue(NORTH, north.is(this) || north.is(ModBlocks.BADLANDS_CACTUS.get()))
                 .setValue(EAST, east.is(this) || east.is(ModBlocks.BADLANDS_CACTUS.get()))
@@ -76,11 +76,10 @@ public class BadlandsCactusBlock extends PipeBlock {
     public boolean canSurvive(@NotNull BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
         BlockState belowState = levelReader.getBlockState(blockPos.below());
         if (belowState.is(Blocks.SAND) || belowState.is(Blocks.RED_SAND)) return true;
-        else
-            return Arrays.stream(Direction.values()).anyMatch(direction -> {
-                BlockState state = levelReader.getBlockState(blockPos.relative(direction));
-                return state.is(this) || state.is(ModBlocks.BADLANDS_CACTUS.get());
-            });
+        else return Arrays.stream(Direction.values()).anyMatch(direction -> {
+            BlockState state = levelReader.getBlockState(blockPos.relative(direction));
+            return state.is(this) || state.is(ModBlocks.BADLANDS_CACTUS.get());
+        });
     }
 
     @Override

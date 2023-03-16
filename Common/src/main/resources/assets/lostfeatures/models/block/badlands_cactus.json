@@ -1,21 +1,19 @@
 {
 	"parent": "block/block",
-	"ambientocclusion": true,
 	"textures": {
-		"particle": "lostfeatures:block/badlands_cactus_top",
-		"inside": "lostfeatures:block/badlands_cactus"
+		"particle": "lostfeatures:block/badlands_cactus_top"
 	},
 	"elements": [
 		{
 			"from": [4, 4, 4],
 			"to": [12, 12, 12],
 			"faces": {
-				"north": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "north"},
-				"east": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "east"},
-				"south": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "south"},
-				"west": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "west"},
-				"up": {"uv": [2, 2, 14, 14], "texture": "#inside", "cullface": "up"},
-				"down": {"uv": [14, 14, 2, 2], "texture": "#inside", "cullface": "down"}
+				"north": {"uv": [4, 4, 12, 12], "texture": "#particle", "cullface": "north"},
+				"east": {"uv": [4, 4, 12, 12], "texture": "#particle", "cullface": "east"},
+				"south": {"uv": [4, 4, 12, 12], "texture": "#particle", "cullface": "south"},
+				"west": {"uv": [4, 4, 12, 12], "texture": "#particle", "cullface": "west"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#particle", "cullface": "up"},
+				"down": {"uv": [12, 12, 4, 4], "texture": "#particle", "cullface": "down"}
 			}
 		}
 	]
