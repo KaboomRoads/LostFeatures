@@ -113,17 +113,13 @@ public class BadlandsCactusBlock extends PipeBlock {
         if (possibilities.isEmpty()) return;
         BlockPos relative = possibilities.get(random.nextInt(possibilities.size()));
         if (level.isEmptyBlock(relative)) {
-            int i;
-            for (i = 1; level.getBlockState(blockPos.below(i)).is(this); ++i) ;
-            if (i < 3) {
-                int j = blockState.getValue(AGE);
-                if (j == 15) {
-                    level.setBlockAndUpdate(relative, getStateForPlacement(level, relative));
-                    BlockState newState = getStateForPlacement(level, blockPos).setValue(AGE, 0);
-                    level.setBlock(blockPos, newState, 3);
-                    level.neighborChanged(newState, relative, this, blockPos, false);
-                } else level.setBlock(blockPos, blockState.setValue(AGE, j + 1), 4);
-            }
+            int j = blockState.getValue(AGE);
+            if (j == 15) {
+                level.setBlockAndUpdate(relative, getStateForPlacement(level, relative));
+                BlockState newState = getStateForPlacement(level, blockPos).setValue(AGE, 0);
+                level.setBlock(blockPos, newState, 3);
+                level.neighborChanged(newState, relative, this, blockPos, false);
+            } else level.setBlock(blockPos, blockState.setValue(AGE, j + 1), 4);
         }
     }
 }
