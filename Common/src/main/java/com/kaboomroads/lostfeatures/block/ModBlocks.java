@@ -6,7 +6,6 @@ import com.kaboomroads.lostfeatures.platform.Services;
 import com.kaboomroads.lostfeatures.worldgen.tree.BaobabTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -19,9 +18,9 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
     public static final Supplier<Block> SCULK_JAW = Services.REGISTRY.registerBlockAndItem("sculk_jaw", () ->
-            new SculkJawBlock(BlockBehaviour.Properties.of(Material.SCULK, MaterialColor.COLOR_CYAN).sound(SoundType.SCULK_SENSOR)));
+            new SculkJawBlock(BlockBehaviour.Properties.of(Material.SCULK, MaterialColor.COLOR_CYAN).strength(1.5F).sound(SoundType.SCULK_SENSOR)));
     public static final Supplier<Block> COPPER_BUTTON = Services.REGISTRY.registerBlockAndItem("copper_button", () ->
-            ButtonBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().sound(SoundType.STONE), 20, false, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON));
+            ButtonBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().sound(SoundType.STONE), ModBlockSetTypes.BAOBAB, 20, false));
 
     public static final Supplier<Block> STRIPPED_BAOBAB_LOG = Services.REGISTRY.registerBlockAndItem("stripped_baobab_log", () ->
             log(MaterialColor.WOOD, MaterialColor.WOOD));
@@ -45,15 +44,15 @@ public class ModBlocks {
     public static final Supplier<Block> BAOBAB_FENCE = Services.REGISTRY.registerBlockAndItem("baobab_fence", () ->
             new FenceBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE)));
     public static final Supplier<Block> BAOBAB_FENCE_GATE = Services.REGISTRY.registerBlockAndItem("baobab_fence_gate", () ->
-            new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE), SoundEvents.FENCE_GATE_CLOSE, SoundEvents.FENCE_GATE_OPEN));
+            new FenceGateBlock(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE), ModWoodTypes.BAOBAB));
     public static final Supplier<Block> BAOBAB_DOOR = Services.REGISTRY.registerBlockAndItem("baobab_door", () ->
-            DoorBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noOcclusion(), SoundEvents.WOODEN_DOOR_CLOSE, SoundEvents.WOODEN_DOOR_OPEN));
+            DoorBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noOcclusion(), ModBlockSetTypes.BAOBAB));
     public static final Supplier<Block> BAOBAB_TRAPDOOR = Services.REGISTRY.registerBlockAndItem("baobab_trapdoor", () ->
-            TrapDoorBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noOcclusion().isValidSpawn(ModBlocks::never), SoundEvents.WOODEN_TRAPDOOR_CLOSE, SoundEvents.WOODEN_TRAPDOOR_OPEN));
+            TrapDoorBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noOcclusion().isValidSpawn(ModBlocks::never), ModBlockSetTypes.BAOBAB));
     public static final Supplier<Block> BAOBAB_BUTTON = Services.REGISTRY.registerBlockAndItem("baobab_button", () ->
-            ButtonBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.DECORATION).noCollission(), 30, true, SoundEvents.WOODEN_BUTTON_CLICK_OFF, SoundEvents.WOODEN_BUTTON_CLICK_ON));
+            ButtonBlockInvoker.invokeInit(BlockBehaviour.Properties.of(Material.DECORATION).noCollission(), ModBlockSetTypes.BAOBAB, 30, true));
     public static final Supplier<Block> BAOBAB_PRESSURE_PLATE = Services.REGISTRY.registerBlockAndItem("baobab_pressure_plate", () ->
-            PressurePlateBlockInvoker.invokeInit(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noCollission(), SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_OFF, SoundEvents.WOODEN_PRESSURE_PLATE_CLICK_ON));
+            PressurePlateBlockInvoker.invokeInit(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noCollission(), ModBlockSetTypes.BAOBAB));
     public static final Supplier<Block> BAOBAB_SIGN = Services.REGISTRY.registerBlock("baobab_sign", () ->
             new ModStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, BAOBAB_PLANKS.get().defaultMaterialColor()).noCollission(), ModWoodTypes.BAOBAB));
     public static final Supplier<Block> BAOBAB_WALL_SIGN = Services.REGISTRY.registerBlock("baobab_wall_sign", () ->

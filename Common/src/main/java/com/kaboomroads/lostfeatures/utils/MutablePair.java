@@ -1,4 +1,4 @@
-package com.kaboomroads.lostfeatures.utils.tuples;
+package com.kaboomroads.lostfeatures.utils;
 
 import java.util.Objects;
 

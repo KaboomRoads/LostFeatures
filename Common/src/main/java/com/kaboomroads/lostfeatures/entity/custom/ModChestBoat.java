@@ -22,142 +22,138 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.gameevent.GameEvent.Context;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
 public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, ContainerEntity {
     private static final int CONTAINER_SIZE = 27;
-    private NonNullList<ItemStack> itemStacks = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
+    private NonNullList<ItemStack> itemStacks;
+    @Nullable
     private ResourceLocation lootTable;
     private long lootTableSeed;
 
-    public ModChestBoat(EntityType<? extends ModBoat> entityType, Level level) {
-        super(entityType, level);
+    public ModChestBoat(EntityType<? extends ModBoat> $$0, Level $$1) {
+        super($$0, $$1);
+        this.itemStacks = NonNullList.withSize(27, ItemStack.EMPTY);
     }
 
-    public ModChestBoat(Level level, double x, double y, double z) {
-        this(ModEntityTypes.CHEST_BOAT.get(), level);
-        this.setPos(x, y, z);
-        this.xo = x;
-        this.yo = y;
-        this.zo = z;
+    public ModChestBoat(Level $$0, double $$1, double $$2, double $$3) {
+        this(ModEntityTypes.CHEST_BOAT.get(), $$0);
+        this.setPos($$1, $$2, $$3);
+        this.xo = $$1;
+        this.yo = $$2;
+        this.zo = $$3;
     }
 
-    @Override
     protected float getSinglePassengerXOffset() {
         return 0.15F;
     }
 
-    @Override
     protected int getMaxPassengers() {
         return 1;
     }
 
-    @Override
-    protected void addAdditionalSaveData(@NotNull CompoundTag compoundTag) {
-        super.addAdditionalSaveData(compoundTag);
-        this.addChestVehicleSaveData(compoundTag);
+    protected void addAdditionalSaveData(@NotNull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        this.addChestVehicleSaveData(tag);
     }
 
-    @Override
-    protected void readAdditionalSaveData(CompoundTag compoundTag) {
-        super.readAdditionalSaveData(compoundTag);
-        this.readChestVehicleSaveData(compoundTag);
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.readChestVehicleSaveData(tag);
     }
 
-    @Override
     public void destroy(@NotNull DamageSource damageSource) {
         super.destroy(damageSource);
-        this.chestVehicleDestroyed(damageSource, this.level, this);
+        this.chestVehicleDestroyed(damageSource, level, this);
     }
 
-    @Override
-    public void remove(@NotNull RemovalReason removalReason) {
-        if (!this.level.isClientSide && removalReason.shouldDestroy())
-            Containers.dropContents(this.level, this, this);
-        super.remove(removalReason);
+    public void remove(@NotNull RemovalReason reason) {
+        if (!level.isClientSide && reason.shouldDestroy()) Containers.dropContents(level, this, this);
+        super.remove(reason);
     }
 
     @NotNull
-    @Override
     public InteractionResult interact(@NotNull Player player, @NotNull InteractionHand hand) {
-        return this.canAddPassenger(player) && !player.isSecondaryUseActive() ? super.interact(player, hand) : this.interactWithChestVehicle(this::gameEvent, player);
+        if (canAddPassenger(player) && !player.isSecondaryUseActive()) return super.interact(player, hand);
+        else {
+            InteractionResult $$2 = interactWithContainerVehicle(player);
+            if ($$2.consumesAction()) {
+                gameEvent(GameEvent.CONTAINER_OPEN, player);
+                PiglinAi.angerNearbyPiglins(player, true);
+            }
+            return $$2;
+        }
     }
 
-    @Override
     public void openCustomInventoryScreen(Player player) {
         player.openMenu(this);
         if (!player.level.isClientSide) {
-            this.gameEvent(GameEvent.CONTAINER_OPEN, player);
+            gameEvent(GameEvent.CONTAINER_OPEN, player);
             PiglinAi.angerNearbyPiglins(player, true);
         }
-
     }
 
     @NotNull
     @Override
     public Item getDropItem() {
-        return switch (this.getCustomVariant()) {
-            case BAOBAB -> ModItems.BAOBAB_CHEST_BOAT.get();
-            default -> ModItems.BAOBAB_CHEST_BOAT.get();
+        return switch (getCustomVariant()) {
+            case BAOBAB -> ModItems.BAOBAB_BOAT.get();
         };
     }
 
-    @Override
     public void clearContent() {
-        this.clearChestVehicleContent();
+        clearChestVehicleContent();
     }
 
-    @Override
     public int getContainerSize() {
-        return CONTAINER_SIZE;
+        return 27;
     }
 
     @NotNull
-    @Override
-    public ItemStack getItem(int p_219880_) {
-        return this.getChestVehicleItem(p_219880_);
+    public ItemStack getItem(int $$0) {
+        return getChestVehicleItem($$0);
     }
 
     @NotNull
-    @Override
-    public ItemStack removeItem(int p_219882_, int p_219883_) {
-        return this.removeChestVehicleItem(p_219882_, p_219883_);
+    public ItemStack removeItem(int $$0, int $$1) {
+        return removeChestVehicleItem($$0, $$1);
     }
 
     @NotNull
-    @Override
-    public ItemStack removeItemNoUpdate(int p_219904_) {
-        return this.removeChestVehicleItemNoUpdate(p_219904_);
+    public ItemStack removeItemNoUpdate(int $$0) {
+        return removeChestVehicleItemNoUpdate($$0);
     }
 
-    public void setItem(int p_219885_, @NotNull ItemStack p_219886_) {
-        this.setChestVehicleItem(p_219885_, p_219886_);
+    public void setItem(int $$0, @NotNull ItemStack itemStack) {
+        this.setChestVehicleItem($$0, itemStack);
     }
 
     @NotNull
-    @Override
-    public SlotAccess getSlot(int p_219918_) {
-        return this.getChestVehicleSlot(p_219918_);
+    public SlotAccess getSlot(int $$0) {
+        return getChestVehicleSlot($$0);
     }
 
-    @Override
     public void setChanged() {
     }
 
-    @Override
-    public boolean stillValid(@NotNull Player p_219896_) {
-        return this.isChestVehicleStillValid(p_219896_);
+    public boolean stillValid(@NotNull Player player) {
+        return this.isChestVehicleStillValid(player);
     }
 
     @Nullable
-    public AbstractContainerMenu createMenu(int p_219910_, @NotNull Inventory p_219911_, @NotNull Player p_219912_) {
-        if (this.lootTable != null && p_219912_.isSpectator()) return null;
+    public AbstractContainerMenu createMenu(int $$0, @NotNull Inventory inventory, @NotNull Player player) {
+        if (lootTable != null && player.isSpectator()) return null;
         else {
-            this.unpackChestVehicleLootTable(p_219911_.player);
-            return ChestMenu.threeRows(p_219910_, p_219911_, this);
+            unpackLootTable(inventory.player);
+            return ChestMenu.threeRows($$0, inventory, this);
         }
+    }
+
+    public void unpackLootTable(@Nullable Player player) {
+        unpackChestVehicleLootTable(player);
     }
 
     @Nullable
@@ -165,29 +161,28 @@ public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, C
         return this.lootTable;
     }
 
-    @Override
-    public void setLootTable(@Nullable ResourceLocation resourceLocation) {
-        this.lootTable = resourceLocation;
+    public void setLootTable(@Nullable ResourceLocation location) {
+        lootTable = location;
     }
 
-    @Override
     public long getLootTableSeed() {
-        return this.lootTableSeed;
+        return lootTableSeed;
     }
 
-    @Override
-    public void setLootTableSeed(long lootTableSeed) {
-        this.lootTableSeed = lootTableSeed;
+    public void setLootTableSeed(long seed) {
+        lootTableSeed = seed;
     }
 
     @NotNull
-    @Override
     public NonNullList<ItemStack> getItemStacks() {
-        return this.itemStacks;
+        return itemStacks;
     }
 
-    @Override
     public void clearItemStacks() {
-        this.itemStacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
+        itemStacks = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+    }
+
+    public void stopOpen(@NotNull Player player) {
+        level.gameEvent(GameEvent.CONTAINER_CLOSE, position(), Context.of(player));
     }
 }

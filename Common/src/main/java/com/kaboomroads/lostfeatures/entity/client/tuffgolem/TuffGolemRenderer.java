@@ -6,13 +6,13 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +43,7 @@ public class TuffGolemRenderer<T extends TuffGolem> extends MobRenderer<T, TuffG
             poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - entity.getYRot()));
             poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
             poseStack.scale(0.5F, 0.5F, 0.5F);
-            itemRenderer.renderStatic(item, ItemTransforms.TransformType.FIXED, packedLight, OverlayTexture.NO_OVERLAY, poseStack, bufferSource, entity.getId());
+            itemRenderer.renderStatic(entity, item, ItemDisplayContext.FIXED, false, poseStack, bufferSource, entity.getLevel(), packedLight, OverlayTexture.NO_OVERLAY, entity.getId());
             poseStack.popPose();
         }
     }

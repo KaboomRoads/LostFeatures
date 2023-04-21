@@ -1,6 +1,6 @@
 package com.kaboomroads.lostfeatures.block.entity.custom;
 
-import com.kaboomroads.lostfeatures.damagesource.ModDamageSource;
+import com.kaboomroads.lostfeatures.damagesource.ModDamageSources;
 import com.kaboomroads.lostfeatures.gameevent.ModGameEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
@@ -30,7 +30,7 @@ public interface SculkAttacker {
 
     static void sculkDamage(LivingEntity livingEntity) {
         if (livingEntity.getType() == EntityType.PLAYER) livingEntity.invulnerableTime = 0;
-        livingEntity.hurt(ModDamageSource.SCULK_ATTACK, 10);
+        livingEntity.hurt(((ModDamageSources) livingEntity.level.damageSources()).sculkAttack(), 10);
         livingEntity.level.gameEvent(ModGameEvent.SCULK_ATTACK.get(), livingEntity.position(), GameEvent.Context.of(livingEntity));
     }
 

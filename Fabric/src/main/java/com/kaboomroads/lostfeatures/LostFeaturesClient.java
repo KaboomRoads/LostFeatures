@@ -126,12 +126,11 @@ public class LostFeaturesClient implements ClientModInitializer {
                 ModBlocks.BAOBAB_BUTTON.get()
         ));
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(entries -> entries.addAfter(
-                CreativeModeTabs.CACHED_ENABLED_FEATURES != null && Items.WARPED_HANGING_SIGN.isEnabled(CreativeModeTabs.CACHED_ENABLED_FEATURES)
+                entries.getEnabledFeatures() != null && Items.WARPED_HANGING_SIGN.isEnabled(entries.getEnabledFeatures())
                         ? Items.WARPED_HANGING_SIGN
                         : Items.WARPED_SIGN,
                 ModItems.BAOBAB_SIGN.get(),
-                ModItems.BAOBAB_HANGING_SIGN.get()
-        ));
+                ModItems.BAOBAB_HANGING_SIGN.get()));
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(entries -> entries.addAfter(Items.MANGROVE_CHEST_BOAT,
                 ModItems.BAOBAB_BOAT.get(),
                 ModItems.BAOBAB_CHEST_BOAT.get()

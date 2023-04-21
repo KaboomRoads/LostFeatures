@@ -9,6 +9,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> THICK_BAOBAB_TREE = Services.REGISTRY.registerPlacedFeature("thick_baobab");
     public static final ResourceKey<PlacedFeature> TERMITE_NEST = Services.REGISTRY.registerPlacedFeature("termite_nest");
     public static final ResourceKey<PlacedFeature> TERMITE_CORE_NEST = Services.REGISTRY.registerPlacedFeature("termite_core_nest");
+    public static final ResourceKey<PlacedFeature> BADLANDS_CACTUS = Services.REGISTRY.registerPlacedFeature("badlands_cactus");
 
     public static void init() {
     }

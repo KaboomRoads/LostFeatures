@@ -4,6 +4,9 @@ import com.kaboomroads.lostfeatures.block.entity.ModBlockEntities;
 import com.kaboomroads.lostfeatures.block.entity.custom.SculkJawBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -23,7 +26,13 @@ public class SculkJawBlock extends BaseEntityBlock {
 
     public SculkJawBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ANIMATION_STATE, 0));
+        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ANIMATION_STATE, 0));
+    }
+
+    @Override
+    public void spawnAfterBreak(@NotNull BlockState $$0, @NotNull ServerLevel $$1, @NotNull BlockPos $$2, @NotNull ItemStack $$3, boolean $$4) {
+        super.spawnAfterBreak($$0, $$1, $$2, $$3, $$4);
+        if ($$4) tryDropExperience($$1, $$2, $$3, ConstantInt.of(5));
     }
 
     @Override

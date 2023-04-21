@@ -4,7 +4,7 @@ import com.kaboomroads.lostfeatures.mixin.WoodTypeInvoker;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 public class ModWoodTypes {
-    public static final WoodType BAOBAB = WoodTypeInvoker.invokeRegister(WoodTypeInvoker.invokeInit("baobab"));
+    public static final WoodType BAOBAB = WoodTypeInvoker.invokeRegister(WoodTypeInvoker.invokeInit("baobab", ModBlockSetTypes.BAOBAB));
 
     public static void init() {
     }

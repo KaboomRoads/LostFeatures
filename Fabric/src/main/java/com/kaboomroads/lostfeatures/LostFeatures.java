@@ -41,6 +41,8 @@ public class LostFeatures implements ModInitializer {
                 GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.TERMITE_NEST);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU),
                 GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.TERMITE_CORE_NEST);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(Biomes.BADLANDS, Biomes.ERODED_BADLANDS, Biomes.WOODED_BADLANDS),
+                GenerationStep.Decoration.VEGETAL_DECORATION, ModPlacedFeatures.BADLANDS_CACTUS);
     }
 
     public static void flammables() {

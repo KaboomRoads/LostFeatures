@@ -10,6 +10,7 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> TERMITE_NEST = Services.REGISTRY.registerConfiguredFeature("termite_nest");
     public static final ResourceKey<ConfiguredFeature<?, ?>> TERMITE_CORE_NEST = Services.REGISTRY.registerConfiguredFeature("termite_core_nest");
     public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_TERMITE_NEST = Services.REGISTRY.registerConfiguredFeature("large_termite_nest");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BADLANDS_CACTUS = Services.REGISTRY.registerConfiguredFeature("badlands_cactus");
 
     public static void init() {
     }

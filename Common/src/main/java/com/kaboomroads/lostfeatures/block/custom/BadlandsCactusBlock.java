@@ -5,13 +5,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PipeBlock;
@@ -56,7 +52,7 @@ public class BadlandsCactusBlock extends PipeBlock {
 
     @Override
     public void entityInside(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, Entity entity) {
-        entity.hurt(DamageSource.CACTUS, 1.0F);
+        entity.hurt(level.damageSources().cactus(), 1.0F);
     }
 
     @NotNull
@@ -92,7 +88,18 @@ public class BadlandsCactusBlock extends PipeBlock {
         return false;
     }
 
-    protected boolean canPlace(@NotNull ServerLevel level, @NotNull BlockPos blockPos) {
+    public boolean canPlace(@NotNull ServerLevel level, @NotNull BlockPos blockPos) {
+        int i = 0;
+        for (Direction dir : Direction.values()) {
+            BlockPos rel = blockPos.relative(dir);
+            BlockState relState = level.getBlockState(rel);
+            if (dir == Direction.DOWN && (relState.is(Blocks.SAND) || relState.is(Blocks.RED_SAND)) || (relState.is(this) && ++i >= 2))
+                return false;
+        }
+        return true;
+    }
+
+    public boolean canPlace(@NotNull WorldGenLevel level, @NotNull BlockPos blockPos) {
         int i = 0;
         for (Direction dir : Direction.values()) {
             BlockPos rel = blockPos.relative(dir);

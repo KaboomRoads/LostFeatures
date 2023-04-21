@@ -4,7 +4,9 @@ import com.kaboomroads.lostfeatures.mixin.BlazeAccessor;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,7 +36,7 @@ public class Wildfire extends Blaze {
         super(entityType, level);
         idleAnimationState.startIfStopped(tickCount);
     }
-    
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -97,15 +99,15 @@ public class Wildfire extends Blaze {
 
     @Override
     public boolean isInvulnerableTo(@NotNull DamageSource damageSource) {
-        return (damageSource.getEntity() != null && damageSource.getEntity().is(this) && damageSource.getDirectEntity() instanceof SmallFireball) || damageSource.isFire() || super.isInvulnerableTo(damageSource);
+        return (damageSource.getEntity() != null && damageSource.getEntity().is(this) && damageSource.getDirectEntity() instanceof SmallFireball) || damageSource.is(DamageTypeTags.IS_FIRE) || super.isInvulnerableTo(damageSource);
     }
 
     @Override
     public boolean hurt(@NotNull DamageSource damageSource, float damage) {
         float originalDamage = damage;
-        if (!damageSource.isBypassInvul()) damage *= 1f - getShields() / 4f;
+        if (!damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) damage *= 1f - getShields() / 4f;
         if (super.hurt(damageSource, damage)) {
-            if (!level.isClientSide && !damageSource.isMagic() && !damageSource.isFall() && originalDamage >= 3) {
+            if (!level.isClientSide && !damageSource.is(DamageTypes.MAGIC) && !damageSource.is(DamageTypeTags.IS_FALL) && originalDamage >= 3) {
                 int shields = getShields();
                 if (shields > 0) {
                     setShields(shields - 1);

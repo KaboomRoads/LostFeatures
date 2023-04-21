@@ -27,7 +27,9 @@ public class OstrichModel<T extends Ostrich> extends HierarchicalModel<T> {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
         PartDefinition ostrich = partdefinition.addOrReplaceChild("ostrich", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
-        PartDefinition body = ostrich.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -4.8333F, -5.8333F, 10.0F, 9.0F, 12.0F, new CubeDeformation(0.0F)).texOffs(18, 21).addBox(-4.0F, -3.8333F, 6.1667F, 8.0F, 8.0F, 2.0F, new CubeDeformation(0.0F)).texOffs(18, 31).addBox(-3.5F, -3.3333F, -8.8333F, 7.0F, 7.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -14.1667F, -0.1667F));
+        PartDefinition body = ostrich.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -4.8333F, -5.8333F, 10.0F, 9.0F, 12.0F, new CubeDeformation(0.0F))
+                .texOffs(18, 21).addBox(-4.0F, -3.8333F, 6.1667F, 8.0F, 8.0F, 2.0F, new CubeDeformation(0.0F))
+                .texOffs(18, 31).addBox(-3.5F, -3.3333F, -8.8333F, 7.0F, 7.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -14.1667F, -0.1667F));
         body.addOrReplaceChild("tail", CubeListBuilder.create().texOffs(38, 33).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 7.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.8333F, 8.1667F));
         PartDefinition neck = body.addOrReplaceChild("neck", CubeListBuilder.create(), PartPose.offset(0.0F, 0.1667F, -8.8333F));
         PartDefinition part3 = neck.addOrReplaceChild("part3", CubeListBuilder.create().texOffs(0, 21).addBox(-2.5F, -14.5F, -1.999F, 5.0F, 18.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -1.0F, -4.0F));
@@ -35,9 +37,9 @@ public class OstrichModel<T extends Ostrich> extends HierarchicalModel<T> {
         neck.addOrReplaceChild("part4", CubeListBuilder.create().texOffs(32, 0).addBox(-2.5F, -2.5F, -2.0F, 5.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
         PartDefinition legs = ostrich.addOrReplaceChild("legs", CubeListBuilder.create(), PartPose.offset(0.0F, -10.0F, 0.0F));
         PartDefinition leg1 = legs.addOrReplaceChild("leg1", CubeListBuilder.create().texOffs(16, 41).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 0.0F, 0.0F));
-        leg1.addOrReplaceChild("part", CubeListBuilder.create().texOffs(32, 41).addBox(-1.0F, 0.0F, -1.999F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 1.0F));
+        leg1.addOrReplaceChild("part", CubeListBuilder.create().texOffs(32, 41).addBox(-1.01F, 0.0F, -2.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 1.0F));
         PartDefinition leg2 = legs.addOrReplaceChild("leg2", CubeListBuilder.create().texOffs(0, 0).addBox(-1.0F, -2.0F, -1.0F, 2.0F, 7.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 0.0F, 0.0F));
-        leg2.addOrReplaceChild("part2", CubeListBuilder.create().texOffs(24, 41).addBox(-1.0F, 0.0F, -2.001F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 1.0F));
+        leg2.addOrReplaceChild("part2", CubeListBuilder.create().texOffs(24, 41).addBox(-0.99F, 0.0F, -2.0F, 2.0F, 5.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, 1.0F));
         return LayerDefinition.create(meshdefinition, 64, 64);
     }
 

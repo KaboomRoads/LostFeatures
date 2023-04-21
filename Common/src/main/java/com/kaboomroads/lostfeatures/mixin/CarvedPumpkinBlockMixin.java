@@ -4,7 +4,7 @@ import com.kaboomroads.lostfeatures.entity.ModEntityTypes;
 import com.kaboomroads.lostfeatures.entity.custom.CopperGolem;
 import com.kaboomroads.lostfeatures.entity.custom.TuffGolem;
 import com.kaboomroads.lostfeatures.tag.ModTags;
-import com.kaboomroads.lostfeatures.utils.tuples.MutablePair;
+import com.kaboomroads.lostfeatures.utils.MutablePair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;

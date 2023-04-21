@@ -49,25 +49,24 @@ public class ModBoat extends Boat {
     @Override
     protected void addAdditionalSaveData(@NotNull CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
-        compoundTag.putString("Type", this.getCustomVariant().getName());
+        compoundTag.putString("Type", getCustomVariant().getName());
     }
 
     @NotNull
     @Override
     public Item getDropItem() {
-        return switch (this.getCustomVariant()) {
+        return switch (getCustomVariant()) {
             case BAOBAB -> ModItems.BAOBAB_BOAT.get();
-            default -> ModItems.BAOBAB_BOAT.get();
         };
     }
 
     public void setCustomVariant(Type type) {
-        this.entityData.set(CUSTOM_TYPE, type.ordinal());
+        entityData.set(CUSTOM_TYPE, type.ordinal());
     }
 
     @NotNull
     public Type getCustomVariant() {
-        return Type.byId(this.entityData.get(CUSTOM_TYPE));
+        return Type.byId(entityData.get(CUSTOM_TYPE));
     }
 
     public enum Type implements StringRepresentable {

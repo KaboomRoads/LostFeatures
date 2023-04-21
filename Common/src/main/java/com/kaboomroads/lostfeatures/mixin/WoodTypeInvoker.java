@@ -1,5 +1,6 @@
 package com.kaboomroads.lostfeatures.mixin;
 
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -12,7 +13,7 @@ public interface WoodTypeInvoker {
     }
 
     @Invoker("<init>")
-    static WoodType invokeInit(String name) {
+    static WoodType invokeInit(String name, BlockSetType type) {
         throw new IllegalStateException();
     }
 }
