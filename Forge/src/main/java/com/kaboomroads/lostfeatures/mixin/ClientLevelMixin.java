@@ -23,7 +23,8 @@ public abstract class ClientLevelMixin extends Level {
         super(p_270739_, p_270683_, p_270200_, p_270240_, p_270692_, p_270904_, p_270470_, p_270248_, p_270466_);
     }
 
-    @Redirect(remap = false, method = "m_263888_", at = @At(remap = true, value = "INVOKE", target = "Lnet/minecraft/world/level/biome/AmbientParticleSettings;canSpawn(Lnet/minecraft/util/RandomSource;)Z"))
+    // lambda$doAnimateTick$8 for testing, m_263888_ for building.
+    @Redirect(remap = false, method = "lambda$doAnimateTick$8", at = @At(remap = true, value = "INVOKE", target = "Lnet/minecraft/world/level/biome/AmbientParticleSettings;canSpawn(Lnet/minecraft/util/RandomSource;)Z"))
     public boolean redirectCanSpawn(AmbientParticleSettings instance, RandomSource random) {
         int time = (int) (this.getDayTime() % 24000L);
         return instance.canSpawn(random) && (!(instance.getOptions().getType() == ModParticles.FIREFLY_PARTICLE.get()) || time <= 23000 && time >= 13000);

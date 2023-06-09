@@ -27,16 +27,18 @@ import com.kaboomroads.lostfeatures.particle.custom.TermiteParticle;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -89,9 +91,23 @@ public class ModClientEvents {
     }
 
     @SubscribeEvent
+    public static void onRegisterBlockColors(RegisterColorHandlersEvent.Block event) {
+        event.register((blockState, tintGetter, blockPos, i) -> tintGetter != null && blockPos != null ? BiomeColors.getAverageFoliageColor(tintGetter, blockPos) : FoliageColor.getDefaultColor(), ModBlocks.BAOBAB_LEAVES.get());
+    }
+
+    @SubscribeEvent
+    public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
+        event.register((itemStack, i) -> {
+            Block blockItem = ((BlockItem) itemStack.getItem()).getBlock();
+            BlockState blockstate = blockItem.defaultBlockState();
+            return event.getBlockColors().getColor(blockstate, null, null, i);
+        }, ModBlocks.BAOBAB_LEAVES.get());
+    }
+
+    @SubscribeEvent
     public static void onRegisterParticleProviders(RegisterParticleProvidersEvent event) {
-        event.register(ModParticles.FIREFLY_PARTICLE.get(), FireflyParticle.Provider::new);
-        event.register(ModParticles.TERMITE_PARTICLE.get(), TermiteParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.FIREFLY_PARTICLE.get(), FireflyParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.TERMITE_PARTICLE.get(), TermiteParticle.Provider::new);
     }
 
     @SubscribeEvent

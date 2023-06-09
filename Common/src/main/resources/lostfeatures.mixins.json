@@ -27,9 +27,7 @@
     "WoodTypeInvoker"
   ],
   "client": [
-    "BlockColorsMixin",
     "ClientLevelMixin",
-    "ItemColorsMixin",
     "SheetsInvoker"
   ],
   "refmap": "lostfeatures.refmap.json",
