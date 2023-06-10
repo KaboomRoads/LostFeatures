@@ -12,8 +12,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class VillagerHostilesSensorMixin {
     @Redirect(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap;builder()Lcom/google/common/collect/ImmutableMap$Builder;"))
     private static ImmutableMap.Builder<EntityType<?>, Float> injectBuilder() {
-        ImmutableMap.Builder<EntityType<?>, Float> builder = ImmutableMap.builder();
-        builder.put(ModEntityTypes.CHILLAGER.get(), 12.0F);
-        return builder;
+        return ImmutableMap.<EntityType<?>, Float>builder().put(ModEntityTypes.CHILLAGER.get(), 12.0F);
     }
 }
