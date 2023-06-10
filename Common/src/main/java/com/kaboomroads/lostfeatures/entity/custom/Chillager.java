@@ -80,14 +80,14 @@ public class Chillager extends SpellcasterIllager {
         @Override
         protected void performSpellCasting() {
             LivingEntity target = Chillager.this.getTarget();
-            BlockHitResult hitResult = level.clip(new ClipContext(new Vec3(target.getX(), target.getEyeY(), target.getZ()), new Vec3(target.getX(), target.getEyeY() + 3, target.getZ()), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, Chillager.this));
+            BlockHitResult hitResult = level().clip(new ClipContext(new Vec3(target.getX(), target.getEyeY(), target.getZ()), new Vec3(target.getX(), target.getEyeY() + 3, target.getZ()), ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, Chillager.this));
             double y = target.getEyeY() + 2;
             if (hitResult.getType() != HitResult.Type.MISS) y = hitResult.getLocation().y;
             this.createSpellEntity(target.getX(), y, target.getZ());
         }
 
         private void createSpellEntity(double x, double y, double z) {
-            Chillager.this.level.addFreshEntity(new IceChunk(Chillager.this.level, x, y, z, 0, -0.25, 0, Chillager.this));
+            Chillager.this.level().addFreshEntity(new IceChunk(Chillager.this.level(), x, y, z, 0, -0.25, 0, Chillager.this));
         }
 
         @Override

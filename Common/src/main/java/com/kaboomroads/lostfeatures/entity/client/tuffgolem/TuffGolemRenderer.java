@@ -43,7 +43,7 @@ public class TuffGolemRenderer<T extends TuffGolem> extends MobRenderer<T, TuffG
             poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - entity.getYRot()));
             poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
             poseStack.scale(0.5F, 0.5F, 0.5F);
-            itemRenderer.renderStatic(entity, item, ItemDisplayContext.FIXED, false, poseStack, bufferSource, entity.getLevel(), packedLight, OverlayTexture.NO_OVERLAY, entity.getId());
+            itemRenderer.renderStatic(entity, item, ItemDisplayContext.FIXED, false, poseStack, bufferSource, entity.level(), packedLight, OverlayTexture.NO_OVERLAY, entity.getId());
             poseStack.popPose();
         }
     }

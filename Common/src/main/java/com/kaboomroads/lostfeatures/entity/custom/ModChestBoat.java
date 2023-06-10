@@ -67,11 +67,11 @@ public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, C
 
     public void destroy(@NotNull DamageSource damageSource) {
         super.destroy(damageSource);
-        this.chestVehicleDestroyed(damageSource, level, this);
+        this.chestVehicleDestroyed(damageSource, level(), this);
     }
 
     public void remove(@NotNull RemovalReason reason) {
-        if (!level.isClientSide && reason.shouldDestroy()) Containers.dropContents(level, this, this);
+        if (!level().isClientSide && reason.shouldDestroy()) Containers.dropContents(level(), this, this);
         super.remove(reason);
     }
 
@@ -90,7 +90,7 @@ public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, C
 
     public void openCustomInventoryScreen(Player player) {
         player.openMenu(this);
-        if (!player.level.isClientSide) {
+        if (!player.level().isClientSide) {
             gameEvent(GameEvent.CONTAINER_OPEN, player);
             PiglinAi.angerNearbyPiglins(player, true);
         }
@@ -183,6 +183,6 @@ public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, C
     }
 
     public void stopOpen(@NotNull Player player) {
-        level.gameEvent(GameEvent.CONTAINER_CLOSE, position(), Context.of(player));
+        level().gameEvent(GameEvent.CONTAINER_CLOSE, position(), Context.of(player));
     }
 }

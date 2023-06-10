@@ -41,11 +41,11 @@ public class BarnacleAttackGoal extends Goal {
     }
 
     public boolean canUse() {
-        long gameTime = this.mob.level.getGameTime();
-        if (gameTime - this.lastCanUseCheck < attackInterval) return false;
+        long gameTime = mob.level().getGameTime();
+        if (gameTime - lastCanUseCheck < attackInterval) return false;
         else {
             this.lastCanUseCheck = gameTime;
-            LivingEntity target = this.mob.getTarget();
+            LivingEntity target = mob.getTarget();
             if (target == null) return false;
             else if (!target.isAlive()) return false;
             else

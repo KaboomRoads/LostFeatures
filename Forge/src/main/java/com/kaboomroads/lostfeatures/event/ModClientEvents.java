@@ -40,15 +40,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModClientEvents {
     @SubscribeEvent
-    public static void onCreativeModeTab(CreativeModeTabEvent.BuildContents event) {
-        if (event.getTab() == CreativeModeTabs.NATURAL_BLOCKS) {
+    public static void onCreativeModeTab(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             add(event, Blocks.SCULK_CATALYST, ModBlocks.SCULK_JAW.get());
             add(event, Blocks.CACTUS, ModBlocks.BADLANDS_CACTUS.get());
             add(event, Blocks.FLOWERING_AZALEA_LEAVES, ModBlocks.BAOBAB_LEAVES.get());
@@ -57,7 +57,7 @@ public class ModClientEvents {
             add(event, ModBlocks.TERMITE_NEST_CORE.get(), ModBlocks.TERMITE_NEST.get());
             add(event, ModBlocks.TERMITE_NEST.get(), ModBlocks.TERMITE_SPIRES.get());
         }
-        if (event.getTab() == CreativeModeTabs.BUILDING_BLOCKS) {
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             add(event, Blocks.WAXED_OXIDIZED_CUT_COPPER_SLAB, ModBlocks.COPPER_BUTTON.get());
             add(event, Items.MANGROVE_BUTTON, ModBlocks.BAOBAB_LOG.get());
             add(event, ModBlocks.BAOBAB_LOG.get(), ModBlocks.BAOBAB_WOOD.get());
@@ -73,9 +73,9 @@ public class ModClientEvents {
             add(event, ModBlocks.BAOBAB_TRAPDOOR.get(), ModBlocks.BAOBAB_PRESSURE_PLATE.get());
             add(event, ModBlocks.BAOBAB_PRESSURE_PLATE.get(), ModBlocks.BAOBAB_BUTTON.get());
         }
-        if (event.getTab() == CreativeModeTabs.REDSTONE_BLOCKS)
+        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS)
             add(event, Blocks.STONE_BUTTON, ModBlocks.COPPER_BUTTON.get());
-        if (event.getTab() == CreativeModeTabs.SPAWN_EGGS) {
+        if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             add(event, Items.PHANTOM_SPAWN_EGG, ModItems.BARNACLE_SPAWN_EGG.get());
             add(event, ModItems.BARNACLE_SPAWN_EGG.get(), ModItems.WILDFIRE_SPAWN_EGG.get());
             add(event, ModItems.WILDFIRE_SPAWN_EGG.get(), ModItems.MOOBLOOM_SPAWN_EGG.get());
@@ -86,7 +86,7 @@ public class ModClientEvents {
         }
     }
 
-    public static void add(CreativeModeTabEvent.BuildContents event, ItemLike after, ItemLike item) {
+    public static void add(BuildCreativeModeTabContentsEvent event, ItemLike after, ItemLike item) {
         event.getEntries().putAfter(new ItemStack(after), new ItemStack(item), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 

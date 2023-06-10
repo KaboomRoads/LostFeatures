@@ -36,7 +36,7 @@ public abstract class BeePollinateGoalMixin {
     }
 
     private Optional<LivingEntity> getNearestEntity(LivingEntity entity) {
-        return getVisibleEntities(entity, ((ServerLevel) entity.level)).flatMap(($$1) -> $$1.findClosest(($$1x) -> isMatchingEntity(entity, $$1x)));
+        return getVisibleEntities(entity, ((ServerLevel) entity.level())).flatMap(($$1) -> $$1.findClosest(($$1x) -> isMatchingEntity(entity, $$1x)));
     }
 
     private boolean isMatchingEntity(@NotNull LivingEntity entity, @NotNull LivingEntity otherEntity) {

@@ -93,7 +93,7 @@ public class TermiteNestCoreBlock extends BaseEntityBlock {
                 HashMap<BlockPos, BlockState> nest = new HashMap<>();
                 for (Map.Entry<BlockPos, BlockState> entry : blockEntity.largerNest.entrySet()) {
                     BlockState state = level.getBlockState(entry.getKey());
-                    if (state.canSurvive(level, entry.getKey()) && !(state.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) || (blockEntity.types.contains(state) && !state.is(ModBlocks.TERMITE_SPIRES.get()))) && (state.isAir() || state.canBeReplaced() || state.is(ModTags.Blocks.TERMITE_NEST_CAN_GENERATE) || state.is(ModBlocks.TERMITE_SPIRES.get())))
+                    if (entry.getValue().canSurvive(level, entry.getKey()) && !(state.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) || (blockEntity.types.contains(state) && !state.is(ModBlocks.TERMITE_SPIRES.get()))) && (state.isAir() || state.canBeReplaced() || state.is(ModTags.Blocks.TERMITE_NEST_CAN_GENERATE) || state.is(ModBlocks.TERMITE_SPIRES.get())))
                         for (Direction direction : Direction.values()) {
                             BlockState relativeState = level.getBlockState(entry.getKey().relative(direction));
                             if (!relativeState.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) && !relativeState.isAir() && !relativeState.canBeReplaced() && !relativeState.is(ModBlocks.TERMITE_SPIRES.get())) {

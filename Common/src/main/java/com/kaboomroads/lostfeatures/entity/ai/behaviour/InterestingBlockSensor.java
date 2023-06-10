@@ -78,7 +78,7 @@ public class InterestingBlockSensor extends Sensor<LivingEntity> {
 
     public static void setInterestingBlockLocation(LivingEntity entity, MemoryModuleType<BlockPos> memoryType, int memoryDuration, @Nullable BlockPos blockPos) {
         Brain<?> brain = entity.getBrain();
-        if (blockPos != null && entity.level.getWorldBorder().isWithinBounds(blockPos)) {
+        if (blockPos != null && entity.level().getWorldBorder().isWithinBounds(blockPos)) {
             brain.setMemoryWithExpiry(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(blockPos), memoryDuration);
             brain.setMemoryWithExpiry(memoryType, blockPos, memoryDuration);
             brain.eraseMemory(MemoryModuleType.WALK_TARGET);

@@ -94,7 +94,7 @@ public class Barnacle extends Squid {
     @Override
     public boolean hurt(@NotNull DamageSource damageSource, float damage) {
         if (super.hurt(damageSource, damage)) {
-            this.level.broadcastEntityEvent(this, (byte) 65);
+            level().broadcastEntityEvent(this, (byte) 65);
             return true;
         }
         return false;
@@ -102,9 +102,9 @@ public class Barnacle extends Squid {
 
     @Override
     protected void customServerAiStep() {
-        level.getProfiler().push("barnacleBrain");
-        getBrain().tick((ServerLevel) level, this);
-        level.getProfiler().pop();
+        level().getProfiler().push("barnacleBrain");
+        getBrain().tick((ServerLevel) level(), this);
+        level().getProfiler().pop();
         super.customServerAiStep();
     }
 
@@ -114,15 +114,15 @@ public class Barnacle extends Squid {
         if (getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE).isPresent() && Sensor.isEntityAttackable(this, getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE).get()))
             setTarget(getBrain().getMemory(MemoryModuleType.NEAREST_ATTACKABLE).get());
         else setTarget(null);
-        lookTarget = level.getEntity(getLookTarget());
+        lookTarget = level().getEntity(getLookTarget());
         if (lookTarget != null) {
             Vec3 pos = lookTarget.position();
             lookAt(EntityAnchorArgument.Anchor.EYES, new Vec3(pos.x, lookTarget.getBoundingBox().getCenter().y, pos.z));
         }
-        if (level.isClientSide) return;
+        if (level().isClientSide) return;
         if (!swim && ((SquidAccessor) this).getSpeed() == 1.0f) {
             swim = true;
-            level.broadcastEntityEvent(this, (byte) 66);
+            level().broadcastEntityEvent(this, (byte) 66);
         } else if (swim && ((SquidAccessor) this).getSpeed() < 1.0f) swim = false;
         if (getTarget() == null || (!animating && getTarget().distanceToSqr(this) >= ATTACK_REACH_SQR + 10) || getTarget().distanceToSqr(this) < 1)
             setLookTarget(-1);
@@ -162,7 +162,7 @@ public class Barnacle extends Squid {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new BarnacleAttackGoal(this, 60, ATTACK_REACH_SQR, 1, 2, true, false, entity -> {
-            level.broadcastEntityEvent(this, (byte) 64);
+            level().broadcastEntityEvent(this, (byte) 64);
             animating = true;
         }));
         goalSelector.addGoal(1, new OceanDepthsMonsterRandomMovementGoal(this));

@@ -75,7 +75,7 @@ public class IceChunk extends Entity {
         ++time;
         if (!this.isNoGravity()) setDeltaMovement(getDeltaMovement().add(0.0D, -0.04D, 0.0D));
         move(MoverType.SELF, getDeltaMovement());
-        if (!level.isClientSide && isOnGround()) {
+        if (!level().isClientSide && onGround()) {
             setDeltaMovement(getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
             destroy();
         }
@@ -84,9 +84,9 @@ public class IceChunk extends Entity {
 
     public void destroy() {
         discard();
-        for (Entity entity : level.getEntities(this, new AABB(getX() - 2.0D, getY() - 2.0D, getZ() - 2.0D, getX() + 2.0D, getY() + 2.0D, getZ() + 2.0D), e -> (e instanceof Mob || e instanceof Player) && Utils.entityIsDamageable(e) && !(e instanceof Raider)))
+        for (Entity entity : level().getEntities(this, new AABB(getX() - 2.0D, getY() - 2.0D, getZ() - 2.0D, getX() + 2.0D, getY() + 2.0D, getZ() + 2.0D), e -> (e instanceof Mob || e instanceof Player) && Utils.entityIsDamageable(e) && !(e instanceof Raider)))
             entity.hurt(((ModDamageSources) damageSources()).iceChunk(this, source), 6.0F);
-        if (level instanceof ServerLevel serverLevel)
+        if (level() instanceof ServerLevel serverLevel)
             serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.BLUE_ICE.defaultBlockState()), getX(), getY(), getZ(), 100, 0.75D, 0.75D, 0.75D, 0.1D);
     }
 
@@ -99,7 +99,7 @@ public class IceChunk extends Entity {
     protected void readAdditionalSaveData(CompoundTag compoundTag) {
         time = compoundTag.getInt("Time");
         damage = compoundTag.getFloat("Damage");
-        source = (LivingEntity) level.getEntity(compoundTag.getInt("Source"));
+        source = (LivingEntity) level().getEntity(compoundTag.getInt("Source"));
     }
 
     @Override

@@ -137,7 +137,7 @@ public class TuffGolem extends AbstractGolem {
     @Override
     public void onItemPickup(@NotNull ItemEntity itemEntity) {
         super.onItemPickup(itemEntity);
-        level.broadcastEntityEvent(this, (byte) 64);
+        level().broadcastEntityEvent(this, (byte) 64);
     }
 
     @Override
@@ -173,13 +173,13 @@ public class TuffGolem extends AbstractGolem {
                 case GREEN -> ClothColor.GREEN;
                 case BLACK -> ClothColor.BLACK;
             };
-            if (!level.isClientSide && getClothColor() != color) {
+            if (!level().isClientSide && getClothColor() != color) {
                 setClothColor(color);
                 if (!player.getAbilities().instabuild) handItem.shrink(1);
             }
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.sidedSuccess(level().isClientSide);
         } else if (!getItemBySlot(EquipmentSlot.MAINHAND).isEmpty()) {
-            if (!level.isClientSide) {
+            if (!level().isClientSide) {
                 getBrain().setMemory(MemoryModuleType.ITEM_PICKUP_COOLDOWN_TICKS, 60);
                 spawnAtLocation(getItemBySlot(EquipmentSlot.MAINHAND));
                 setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
@@ -188,9 +188,9 @@ public class TuffGolem extends AbstractGolem {
                     spawnAtLocation(itemstack);
                     setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
                 }
-                level.broadcastEntityEvent(this, (byte) 65);
+                level().broadcastEntityEvent(this, (byte) 65);
             }
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.sidedSuccess(level().isClientSide);
         }
         return super.interactAt(player, $$1, hand);
     }
@@ -216,9 +216,9 @@ public class TuffGolem extends AbstractGolem {
 
     @Override
     protected void customServerAiStep() {
-        level.getProfiler().push("tuffGolemBrain");
-        getBrain().tick((ServerLevel) level, this);
-        level.getProfiler().pop();
+        level().getProfiler().push("tuffGolemBrain");
+        getBrain().tick((ServerLevel) level(), this);
+        level().getProfiler().pop();
         TuffGolemAi.updateActivity(this);
         super.customServerAiStep();
     }
@@ -279,20 +279,20 @@ public class TuffGolem extends AbstractGolem {
     public void tick() {
         super.tick();
         if (frozen) setDeltaMovement(0, 0, 0);
-        if (!level.isClientSide) {
+        if (!level().isClientSide) {
             if (spawnPosition == null) spawnPosition = position();
             if (!isNoAi()) ++freezeTicks;
             if (freezeTicks >= freezeDuration) {
                 if (frozen) {
                     frozen = false;
                     setDeltaMovement(0, 0, 0);
-                    level.broadcastEntityEvent(this, (byte) 66);
+                    level().broadcastEntityEvent(this, (byte) 66);
                     freezeTicks = 0;
                     freezeDuration = random.nextInt(100, 400);
                 } else {
                     Vec3 start = spawnPosition.add(0, 0.99, 0);
-                    Vec3 end = new Vec3(spawnPosition.x, level.getMinBuildHeight(), spawnPosition.z);
-                    BlockHitResult hitResult = level.clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+                    Vec3 end = new Vec3(spawnPosition.x, level().getMinBuildHeight(), spawnPosition.z);
+                    BlockHitResult hitResult = level().clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
                     BlockPos pos = hitResult.getBlockPos();
                     Vec3 targetPos = Vec3.atBottomCenterOf(pos).add(0, 1, 0);
                     getBrain().setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(Vec3.atBottomCenterOf(pos), 1.0F, 0));
@@ -306,16 +306,16 @@ public class TuffGolem extends AbstractGolem {
                             yHeadRot = newYRot;
                         }
                         setDeltaMovement(0, 0, 0);
-                        level.broadcastEntityEvent(this, (byte) 66);
+                        level().broadcastEntityEvent(this, (byte) 66);
                         freezeTicks = 0;
                         freezeDuration = random.nextInt(100, 400);
                     }
                 }
             }
         } else {
-            walkAnimationState.animateWhen((onGround || hasControllingPassenger()) && !isNoAi() && getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D, tickCount);
+            walkAnimationState.animateWhen((onGround() || hasControllingPassenger()) && !isNoAi() && getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D, tickCount);
             if (!getItemBySlot(EquipmentSlot.MAINHAND).isEmpty()) displayAnimationState.startIfStopped(tickCount);
-            else level.broadcastEntityEvent(this, (byte) 65);
+            else level().broadcastEntityEvent(this, (byte) 65);
         }
     }
 }

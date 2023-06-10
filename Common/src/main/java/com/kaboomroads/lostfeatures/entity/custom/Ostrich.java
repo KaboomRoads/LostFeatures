@@ -61,9 +61,9 @@ public class Ostrich extends Animal {
 
     @Override
     protected void customServerAiStep() {
-        level.getProfiler().push("ostrichBrain");
-        getBrain().tick((ServerLevel) level, this);
-        level.getProfiler().pop();
+        level().getProfiler().push("ostrichBrain");
+        getBrain().tick((ServerLevel) level(), this);
+        level().getProfiler().pop();
         OstrichAi.updateActivity(this);
         super.customServerAiStep();
     }
@@ -82,7 +82,7 @@ public class Ostrich extends Animal {
     @Override
     public void tick() {
         super.tick();
-        if (level.isClientSide)
-            walkAnimationState.animateWhen((onGround || hasControllingPassenger()) && !isNoAi() && getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D, tickCount);
+        if (level().isClientSide)
+            walkAnimationState.animateWhen((onGround() || hasControllingPassenger()) && !isNoAi() && getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D, tickCount);
     }
 }

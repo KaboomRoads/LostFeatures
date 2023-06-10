@@ -24,9 +24,9 @@ public class PressButtons {
                 if (distSqr <= buttonRangeSqr && blockState.getBlock() instanceof ButtonBlock buttonBlock && !blockState.getValue(ButtonBlock.POWERED)) {
                     brain.setMemoryWithExpiry(MemoryModuleType.ATTACK_COOLING_DOWN, true, 20L);
                     brain.eraseMemory(posMemory);
-                    entity.level.broadcastEntityEvent(entity, (byte) 64);
+                    entity.level().broadcastEntityEvent(entity, (byte) 64);
                     buttonBlock.press(blockState, level, blockPos);
-                    entity.level.gameEvent(entity, GameEvent.BLOCK_ACTIVATE, blockPos);
+                    entity.level().gameEvent(entity, GameEvent.BLOCK_ACTIVATE, blockPos);
                     return true;
                 }
             }

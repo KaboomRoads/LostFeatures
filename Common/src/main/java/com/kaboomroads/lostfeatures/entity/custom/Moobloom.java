@@ -33,18 +33,18 @@ public class Moobloom extends Cow implements Shearable {
         if (item.is(Items.SHEARS) && readyForShearing()) {
             shear(SoundSource.PLAYERS);
             gameEvent(GameEvent.SHEAR, player);
-            if (!level.isClientSide) item.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            if (!level().isClientSide) item.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
+            return InteractionResult.sidedSuccess(level().isClientSide);
         } else return super.mobInteract(player, hand);
     }
 
     @Override
     public void shear(@NotNull SoundSource soundSource) {
-        level.playSound(null, this, SoundEvents.MOOSHROOM_SHEAR, soundSource, 1.0F, 1.0F);
-        if (!level.isClientSide()) {
-            Cow cow = EntityType.COW.create(level);
+        level().playSound(null, this, SoundEvents.MOOSHROOM_SHEAR, soundSource, 1.0F, 1.0F);
+        if (!level().isClientSide()) {
+            Cow cow = EntityType.COW.create(level());
             if (cow != null) {
-                ((ServerLevel) level).sendParticles(ParticleTypes.EXPLOSION, getX(), getY(0.5D), getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
+                ((ServerLevel) level()).sendParticles(ParticleTypes.EXPLOSION, getX(), getY(0.5D), getZ(), 1, 0.0D, 0.0D, 0.0D, 0.0D);
                 discard();
                 cow.moveTo(getX(), getY(), getZ(), getYRot(), getXRot());
                 cow.setHealth(getHealth());
@@ -62,9 +62,9 @@ public class Moobloom extends Cow implements Shearable {
                 }
                 if (isPersistenceRequired()) cow.setPersistenceRequired();
                 cow.setInvulnerable(isInvulnerable());
-                level.addFreshEntity(cow);
+                level().addFreshEntity(cow);
                 for (int i = 0; i < 5; ++i)
-                    level.addFreshEntity(new ItemEntity(level, getX(), getY(1.0D), getZ(), new ItemStack(Items.DANDELION)));
+                    level().addFreshEntity(new ItemEntity(level(), getX(), getY(1.0D), getZ(), new ItemStack(Items.DANDELION)));
             }
         }
 

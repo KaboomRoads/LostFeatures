@@ -83,7 +83,7 @@ public class Wildfire extends Blaze {
     @Override
     public void aiStep() {
         super.aiStep();
-        if (level.isClientSide) return;
+        if (level().isClientSide) return;
         if (getShieldRegenerating()) {
             setShieldRegeneration(getShieldRegeneration() + 1);
             int shieldRegen = getShieldRegeneration();
@@ -107,13 +107,13 @@ public class Wildfire extends Blaze {
         float originalDamage = damage;
         if (!damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) damage *= 1f - getShields() / 4f;
         if (super.hurt(damageSource, damage)) {
-            if (!level.isClientSide && !damageSource.is(DamageTypes.MAGIC) && !damageSource.is(DamageTypeTags.IS_FALL) && originalDamage >= 3) {
+            if (!level().isClientSide && !damageSource.is(DamageTypes.MAGIC) && !damageSource.is(DamageTypeTags.IS_FALL) && originalDamage >= 3) {
                 int shields = getShields();
                 if (shields > 0) {
                     setShields(shields - 1);
                     if (shields <= 4) setShieldRegenerating(true);
                 } else if (shields != 0) setShields(0);
-                level.broadcastEntityEvent(this, (byte) 64);
+                level().broadcastEntityEvent(this, (byte) 64);
             }
             return true;
         }
@@ -194,11 +194,11 @@ public class Wildfire extends Blaze {
                         }
                         if (attackStep > 1) {
                             double distanceSqrt = Math.sqrt(Math.sqrt(distanceSqr)) * 0.5D;
-                            if (!blaze.isSilent()) blaze.level.levelEvent(null, 1018, blaze.blockPosition(), 0);
+                            if (!blaze.isSilent()) blaze.level().levelEvent(null, 1018, blaze.blockPosition(), 0);
                             for (int i = 0; i < burst; ++i) {
-                                SmallFireball fireball = new SmallFireball(blaze.level, blaze, blaze.getRandom().triangle(dx, 1.5D * distanceSqrt), dy, blaze.getRandom().triangle(dz, 1.5D * distanceSqrt));
+                                SmallFireball fireball = new SmallFireball(blaze.level(), blaze, blaze.getRandom().triangle(dx, 1.5D * distanceSqrt), dy, blaze.getRandom().triangle(dz, 1.5D * distanceSqrt));
                                 fireball.setPos(fireball.getX(), blaze.getY(0.5D) + 0.5D, fireball.getZ());
-                                blaze.level.addFreshEntity(fireball);
+                                blaze.level().addFreshEntity(fireball);
                             }
                         }
                     }

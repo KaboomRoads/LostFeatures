@@ -127,9 +127,9 @@ public class CopperGolem extends AbstractGolem {
 
     @Override
     protected void customServerAiStep() {
-        level.getProfiler().push("copperGolemBrain");
-        getBrain().tick((ServerLevel) level, this);
-        level.getProfiler().pop();
+        level().getProfiler().push("copperGolemBrain");
+        getBrain().tick((ServerLevel) level(), this);
+        level().getProfiler().pop();
         CopperGolemAi.updateActivity(this);
         super.customServerAiStep();
     }
@@ -137,7 +137,7 @@ public class CopperGolem extends AbstractGolem {
     @Override
     public void aiStep() {
         super.aiStep();
-        if (!level.isClientSide && !getWaxed() && getStage() < 3) {
+        if (!level().isClientSide && !getWaxed() && getStage() < 3) {
             ++oxidizeTicks;
             if (oxidizeTicks >= oxidizeDuration) {
                 setStage(Mth.clamp(getStage() + 1, 0, 3));
@@ -153,21 +153,21 @@ public class CopperGolem extends AbstractGolem {
         ItemStack item = player.getItemInHand(hand);
         if (item.is(Items.HONEYCOMB) && !getWaxed()) {
             setWaxed(true);
-            if (level instanceof ServerLevel serverLevel)
+            if (level() instanceof ServerLevel serverLevel)
                 serverLevel.sendParticles(ParticleTypes.WAX_ON, position().x, position().y, position().z, 50, 0.25f, 0.5f, 0.25f, 0);
-            this.level.playLocalSound(blockPosition(), SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-            return InteractionResult.sidedSuccess(level.isClientSide);
+            this.level().playLocalSound(blockPosition(), SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            return InteractionResult.sidedSuccess(level().isClientSide);
         } else if (item.getItem() instanceof AxeItem) {
             if (getWaxed()) {
                 setWaxed(false);
-                if (level instanceof ServerLevel serverLevel)
+                if (level() instanceof ServerLevel serverLevel)
                     serverLevel.sendParticles(ParticleTypes.WAX_OFF, position().x, position().y, position().z, 50, 0.25f, 0.5f, 0.25f, 0);
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.sidedSuccess(level().isClientSide);
             } else if (getStage() > 0) {
                 setStage(getStage() - 1);
-                if (level instanceof ServerLevel serverLevel)
+                if (level() instanceof ServerLevel serverLevel)
                     serverLevel.sendParticles(ParticleTypes.SCRAPE, position().x, position().y, position().z, 50, 0.25f, 0.5f, 0.25f, 0);
-                return InteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.sidedSuccess(level().isClientSide);
             }
         }
         return super.interactAt(player, vec3, hand);
@@ -182,7 +182,7 @@ public class CopperGolem extends AbstractGolem {
     @Override
     public void tick() {
         super.tick();
-        if (this.level.isClientSide())
-            this.walkAnimationState.animateWhen((this.onGround || this.hasControllingPassenger()) && !isNoAi() && this.getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D, this.tickCount);
+        if (level().isClientSide())
+            walkAnimationState.animateWhen((onGround() || hasControllingPassenger()) && !isNoAi() && getDeltaMovement().horizontalDistanceSqr() > 1.0E-6D, tickCount);
     }
 }
