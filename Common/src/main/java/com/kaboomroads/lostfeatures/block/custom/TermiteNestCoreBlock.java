@@ -28,10 +28,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class TermiteNestCoreBlock extends BaseEntityBlock {
     public TermiteNestCoreBlock(Properties properties) {
@@ -103,9 +100,8 @@ public class TermiteNestCoreBlock extends BaseEntityBlock {
                         }
                 }
                 if (!nest.isEmpty()) {
-                    Object[] entryArray = nest.entrySet().toArray();
-                    @SuppressWarnings("unchecked")
-                    Map.Entry<BlockPos, BlockState> entry = (Map.Entry<BlockPos, BlockState>) entryArray[random.nextInt(entryArray.length)];
+                    List<Map.Entry<BlockPos, BlockState>> entries = new ArrayList<>(nest.entrySet());
+                    Map.Entry<BlockPos, BlockState> entry = entries.get(random.nextInt(entries.size()));
                     level.setBlock(entry.getKey(), entry.getValue(), 3);
                     blockEntity.largerNest.remove(entry.getKey());
                     if (nest.size() <= 1)

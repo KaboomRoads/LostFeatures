@@ -100,7 +100,7 @@ public class ModChestBoat extends ModBoat implements HasCustomInventoryScreen, C
     @Override
     public Item getDropItem() {
         return switch (getCustomVariant()) {
-            case BAOBAB -> ModItems.BAOBAB_BOAT.get();
+            case BAOBAB -> ModItems.BAOBAB_CHEST_BOAT.get();
         };
     }
 
