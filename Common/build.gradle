@@ -27,7 +27,7 @@ repositories {
 dependencies {
     compileOnly group: 'org.spongepowered', name: 'mixin', version: '0.8.5'
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
-    implementation group: 'com.github.llamalad7.mixinextras', name: 'mixinextras-common', version: '0.2.0-beta.9'
+    implementation group: 'io.github.llamalad7', name: 'mixinextras-common', version: '0.2.0-rc.2'
 }
 
 processResources {
