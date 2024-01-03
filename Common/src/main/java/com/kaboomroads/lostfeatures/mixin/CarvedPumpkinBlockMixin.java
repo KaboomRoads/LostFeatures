@@ -35,9 +35,6 @@ public abstract class CarvedPumpkinBlockMixin {
     private static Predicate<BlockState> PUMPKINS_PREDICATE;
 
     @Shadow
-    public abstract boolean canSpawnGolem(LevelReader levelReader, BlockPos blockPos);
-
-    @Shadow
     private static void spawnGolemInWorld(Level level, BlockPattern.BlockPatternMatch patternMatch, Entity entity, BlockPos blockPos) {
     }
 
@@ -99,7 +96,8 @@ public abstract class CarvedPumpkinBlockMixin {
 
     @Inject(method = "canSpawnGolem", at = @At(value = "HEAD"), cancellable = true)
     public void injectCanSpawnGolem(LevelReader levelReader, BlockPos blockPos, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(getOrCreateTuffGolemBase().find(levelReader, blockPos) != null || getOrCreateCopperGolemBase().find(levelReader, blockPos) != null || canSpawnGolem(levelReader, blockPos));
+        if (getOrCreateTuffGolemBase().find(levelReader, blockPos) != null || getOrCreateCopperGolemBase().find(levelReader, blockPos) != null)
+            cir.setReturnValue(true);
     }
 
     @Inject(method = "trySpawnGolem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/CarvedPumpkinBlock;getOrCreateIronGolemFull()Lnet/minecraft/world/level/block/state/pattern/BlockPattern;"))
