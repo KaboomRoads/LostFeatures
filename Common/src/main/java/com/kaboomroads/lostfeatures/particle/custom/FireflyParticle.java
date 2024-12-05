@@ -19,7 +19,7 @@ public class FireflyParticle extends TextureSheetParticle {
         this.xd += p_171911_;
         this.yd += p_171912_;
         this.zd += p_171913_;
-        this.quadSize *= 1.25;
+        this.quadSize *= 1.25F;
         this.lifetime = 100;
         this.setSpriteFromAge(spriteSet);
         this.rCol = 1f;

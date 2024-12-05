@@ -13,7 +13,6 @@ out
 *.iml
 .idea/*
 !.idea/scopes
-.run
 
 # gradle
 build

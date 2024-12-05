@@ -20,7 +20,7 @@ public class ModEntitySpawning {
                         Biomes.DEEP_FROZEN_OCEAN),
                 MobCategory.WATER_CREATURE,
                 ModEntityTypes.BARNACLE.get(),
-                2, 1, 2
+                1, 1, 2
         );
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(
                         Biomes.PLAINS,

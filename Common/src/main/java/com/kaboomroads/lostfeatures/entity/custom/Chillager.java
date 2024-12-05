@@ -39,7 +39,7 @@ public class Chillager extends SpellcasterIllager {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new SpellcasterIllager.SpellcasterCastingSpellGoal());
+        this.goalSelector.addGoal(1, new SpellcasterCastingSpellGoal());
         this.goalSelector.addGoal(4, new ChillagerAttackSpellGoal());
         this.goalSelector.addGoal(8, new RandomStrollGoal(this, 0.6D));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 3.0F, 1.0F));
@@ -66,7 +66,7 @@ public class Chillager extends SpellcasterIllager {
         return SoundEvents.ILLUSIONER_AMBIENT;
     }
 
-    class ChillagerAttackSpellGoal extends SpellcasterIllager.SpellcasterUseSpellGoal {
+    class ChillagerAttackSpellGoal extends SpellcasterUseSpellGoal {
         @Override
         protected int getCastingTime() {
             return 40;
@@ -98,7 +98,7 @@ public class Chillager extends SpellcasterIllager {
         @NotNull
         @Override
         protected SpellcasterIllager.IllagerSpell getSpell() {
-            return SpellcasterIllager.IllagerSpell.DISAPPEAR;
+            return IllagerSpell.DISAPPEAR;
         }
     }
 }

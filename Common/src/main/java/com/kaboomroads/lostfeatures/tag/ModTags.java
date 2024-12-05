@@ -10,9 +10,9 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
     public static void init() {
-        ModTags.Blocks.init();
-        ModTags.Items.init();
-        ModTags.EntityTypes.init();
+        Blocks.init();
+        Items.init();
+        EntityTypes.init();
     }
 
     public static class Blocks {

@@ -1,9 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": [
-    "minecraft:savanna",
-    "minecraft:savanna_plateau"
-  ],
-  "features": "lostfeatures:thick_baobab",
-  "step": "vegetal_decoration"
-}

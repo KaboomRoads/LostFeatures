@@ -57,7 +57,7 @@ public class IceChunk extends Entity {
     @NotNull
     @Override
     protected Entity.MovementEmission getMovementEmission() {
-        return Entity.MovementEmission.NONE;
+        return MovementEmission.NONE;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class IceChunk extends Entity {
     public void destroy() {
         discard();
         for (Entity entity : level().getEntities(this, new AABB(getX() - 2.0D, getY() - 2.0D, getZ() - 2.0D, getX() + 2.0D, getY() + 2.0D, getZ() + 2.0D), e -> (e instanceof Mob || e instanceof Player) && Utils.entityIsDamageable(e) && !(e instanceof Raider)))
-            entity.hurt(((ModDamageSources) damageSources()).iceChunk(this, source), 6.0F);
+            entity.hurt(((ModDamageSources) damageSources()).lostfeatures$iceChunk(this, source), 6.0F);
         if (level() instanceof ServerLevel serverLevel)
             serverLevel.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.BLUE_ICE.defaultBlockState()), getX(), getY(), getZ(), 100, 0.75D, 0.75D, 0.75D, 0.1D);
     }

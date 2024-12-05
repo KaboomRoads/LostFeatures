@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import javax.annotation.Nullable;
 
 public interface ModDamageSources {
-    DamageSource iceChunk(Entity entity, @Nullable LivingEntity source);
+    DamageSource lostfeatures$iceChunk(Entity entity, @Nullable LivingEntity source);
 
-    DamageSource sculkAttack();
+    DamageSource lostfeatures$sculkAttack();
 }

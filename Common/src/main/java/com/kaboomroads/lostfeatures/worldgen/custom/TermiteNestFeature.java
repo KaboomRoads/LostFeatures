@@ -3,6 +3,7 @@ package com.kaboomroads.lostfeatures.worldgen.custom;
 import com.kaboomroads.lostfeatures.worldgen.configuration.TermiteNestConfiguration;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -22,23 +23,26 @@ public class TermiteNestFeature extends Feature<TermiteNestConfiguration> {
         BlockPos pos = context.origin();
         WorldGenLevel level = context.level();
         RandomSource random = context.random();
-        TermiteNestConfiguration config;
-        for (config = context.config(); pos.getY() > level.getMinBuildHeight() + 3; pos = pos.below()) {
-            BlockState state = level.getBlockState(pos.below());
+        TermiteNestConfiguration config = context.config();
+        BlockPos.MutableBlockPos cursor = pos.mutable();
+        for (int i = 0; i < 32 && pos.getY() > level.getMinBuildHeight() + 4; i++) {
+            cursor.move(Direction.DOWN);
+            BlockState state = level.getBlockState(cursor);
             if (state.is(config.canNotGenerateOn())) return false;
             else if (state.is(config.canGenerateOn())) break;
         }
-        if (pos.getY() <= level.getMinBuildHeight() + 3) return false;
+        if (cursor.getY() <= level.getMinBuildHeight() + 4 || !level.getBlockState(cursor).is(config.canGenerateOn()))
+            return false;
         else {
             int xSize = config.xSize().sample(random);
             int zSize = config.zSize().sample(random);
             float spireChance = config.spireChance().sample(random);
             int maxSpireCount = config.maxSpireCount().sample(random);
-            generateNest(level, pos, xSize, zSize, config.height(), config.depth(), config.stateProvider(), config.spireProvider(), spireChance, maxSpireCount, config.lastResortSpire(), config.core(), config.coreProvider(), random);
+            generateNest(level, cursor, xSize, zSize, config.height(), config.depth(), config.stateProvider(), config.spireProvider(), spireChance, maxSpireCount, config.lastResortSpire(), config.core(), config.coreProvider(), random);
             return true;
         }
     }
-    
+
     public static void generateNest(WorldGenLevel level, BlockPos center, int xSize, int zSize, IntProvider height, IntProvider depth, BlockStateProvider stateProvider, BlockStateProvider spireProvider, float spireChance, int maxSpireCount, boolean lastResortSpire, boolean core, BlockStateProvider coreProvider, RandomSource random) {
         int deltaX = Mth.floor(xSize * 0.5f);
         int deltaZ = Mth.floor(zSize * 0.5f);

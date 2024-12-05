@@ -86,28 +86,26 @@ public class TermiteNestCoreBlock extends BaseEntityBlock {
                     blockEntity.largerNest = generateNest(blockPos, xSize, zSize, config.height(), config.depth(), config.stateProvider(), config.spireProvider(), spireChance, maxSpireCount, config.lastResortSpire(), config.core(), config.coreProvider(), blockEntity.types, random);
                 }
             }
-            if (blockEntity.largerNest != null) {
-                HashMap<BlockPos, BlockState> nest = new HashMap<>();
-                for (Map.Entry<BlockPos, BlockState> entry : blockEntity.largerNest.entrySet()) {
-                    BlockState state = level.getBlockState(entry.getKey());
-                    if (entry.getValue().canSurvive(level, entry.getKey()) && !(state.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) || (blockEntity.types.contains(state) && !state.is(ModBlocks.TERMITE_SPIRES.get()))) && (state.isAir() || state.canBeReplaced() || state.is(ModTags.Blocks.TERMITE_NEST_CAN_GENERATE) || state.is(ModBlocks.TERMITE_SPIRES.get())))
-                        for (Direction direction : Direction.values()) {
-                            BlockState relativeState = level.getBlockState(entry.getKey().relative(direction));
-                            if (!relativeState.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) && !relativeState.isAir() && !relativeState.canBeReplaced() && !relativeState.is(ModBlocks.TERMITE_SPIRES.get())) {
-                                nest.put(entry.getKey(), entry.getValue());
-                                break;
-                            }
+            if (blockEntity.largerNest == null) return;
+            HashMap<BlockPos, BlockState> nest = new HashMap<>();
+            for (Map.Entry<BlockPos, BlockState> entry : blockEntity.largerNest.entrySet()) {
+                BlockState state = level.getBlockState(entry.getKey());
+                if (entry.getValue().canSurvive(level, entry.getKey()) && !(state.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) || (blockEntity.types.contains(state) && !state.is(ModBlocks.TERMITE_SPIRES.get()))) && (state.isAir() || state.canBeReplaced() || state.is(ModTags.Blocks.TERMITE_NEST_CAN_GENERATE) || state.is(ModBlocks.TERMITE_SPIRES.get())))
+                    for (Direction direction : Direction.values()) {
+                        BlockState relativeState = level.getBlockState(entry.getKey().relative(direction));
+                        if (!relativeState.is(ModTags.Blocks.TERMITE_NEST_CAN_NOT_GENERATE) && !relativeState.isAir() && !relativeState.canBeReplaced() && !relativeState.is(ModBlocks.TERMITE_SPIRES.get())) {
+                            nest.put(entry.getKey(), entry.getValue());
+                            break;
                         }
-                }
-                if (!nest.isEmpty()) {
-                    List<Map.Entry<BlockPos, BlockState>> entries = new ArrayList<>(nest.entrySet());
-                    Map.Entry<BlockPos, BlockState> entry = entries.get(random.nextInt(entries.size()));
-                    level.setBlock(entry.getKey(), entry.getValue(), 3);
-                    blockEntity.largerNest.remove(entry.getKey());
-                    if (nest.size() <= 1)
-                        level.setBlock(blockPos, ModBlocks.TERMITE_NEST.get().defaultBlockState().setValue(TermiteNestBlock.TERMITES, true), 3);
-                }
+                    }
             }
+            if (nest.isEmpty()) return;
+            List<Map.Entry<BlockPos, BlockState>> entries = new ArrayList<>(nest.entrySet());
+            Map.Entry<BlockPos, BlockState> entry = entries.get(random.nextInt(entries.size()));
+            level.setBlock(entry.getKey(), entry.getValue(), 3);
+            blockEntity.largerNest.remove(entry.getKey());
+            if (nest.size() <= 1)
+                level.setBlock(blockPos, ModBlocks.TERMITE_NEST.get().defaultBlockState().setValue(TermiteNestBlock.TERMITES, true), 3);
         }
     }
 

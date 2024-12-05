@@ -10,10 +10,10 @@
     "BlockSetTypeInvoker",
     "ButtonBlockInvoker",
     "CarvedPumpkinBlockMixin",
-    "DamageSourcesInvoker",
     "DamageSourcesMixin",
     "DoorBlockInvoker",
     "FoliagePlacerTypeInvoker",
+    "NetherFortressStructureMixin",
     "PressurePlateBlockInvoker",
     "RaidMixin",
     "SaplingBlockInvoker",
@@ -30,9 +30,8 @@
     "ClientLevelMixin",
     "SheetsInvoker"
   ],
-  "refmap": "lostfeatures.refmap.json",
+  "refmap": "${mod_id}.refmap.json",
   "injectors": {
     "defaultRequire": 1
   }
 }
-  

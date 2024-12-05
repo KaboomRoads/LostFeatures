@@ -30,7 +30,7 @@ public interface SculkAttacker {
 
     static void sculkDamage(LivingEntity livingEntity) {
         if (livingEntity.getType() == EntityType.PLAYER) livingEntity.invulnerableTime = 0;
-        livingEntity.hurt(((ModDamageSources) livingEntity.level().damageSources()).sculkAttack(), 10);
+        livingEntity.hurt(((ModDamageSources) livingEntity.level().damageSources()).lostfeatures$sculkAttack(), 10);
         livingEntity.level().gameEvent(ModGameEvent.SCULK_ATTACK.get(), livingEntity.position(), GameEvent.Context.of(livingEntity));
     }
 
