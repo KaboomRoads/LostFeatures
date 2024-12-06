@@ -13,6 +13,7 @@
     "DamageSourcesMixin",
     "DoorBlockInvoker",
     "FoliagePlacerTypeInvoker",
+    "NetherFortressStructureMixin",
     "PressurePlateBlockInvoker",
     "RaidMixin",
     "SaplingBlockInvoker",
