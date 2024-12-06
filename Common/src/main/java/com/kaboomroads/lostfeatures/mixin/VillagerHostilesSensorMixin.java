@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(VillagerHostilesSensor.class)
 public abstract class VillagerHostilesSensorMixin {
-    @ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap;builder()Lcom/google/common/collect/ImmutableMap$Builder;", ordinal = 0))
+    @ModifyExpressionValue(method = "<clinit>", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/ImmutableMap;builder()Lcom/google/common/collect/ImmutableMap$Builder;", remap = false, ordinal = 0))
     private static ImmutableMap.Builder<EntityType<?>, Float> modifyDistances(ImmutableMap.Builder<EntityType<?>, Float> original) {
         return original.put(ModEntityTypes.CHILLAGER.get(), 12.0F);
     }

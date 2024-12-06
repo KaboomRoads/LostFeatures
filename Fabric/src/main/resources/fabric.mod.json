@@ -8,7 +8,7 @@
     "${mod_author}"
   ],
   "license": "${license}",
-  "icon": "assets/lostfeatures/icon.png",
+  "icon": "${mod_id}.png",
   "environment": "*",
   "entrypoints": {
     "main": [
