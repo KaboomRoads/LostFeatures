@@ -26,10 +26,10 @@ public class TermiteNestFeature extends Feature<TermiteNestConfiguration> {
         TermiteNestConfiguration config = context.config();
         BlockPos.MutableBlockPos cursor = pos.mutable();
         for (int i = 0; i < 32 && pos.getY() > level.getMinBuildHeight() + 4; i++) {
-            cursor.move(Direction.DOWN);
             BlockState state = level.getBlockState(cursor);
             if (state.is(config.canNotGenerateOn())) return false;
             else if (state.is(config.canGenerateOn())) break;
+            cursor.move(Direction.DOWN);
         }
         if (cursor.getY() <= level.getMinBuildHeight() + 4 || !level.getBlockState(cursor).is(config.canGenerateOn()))
             return false;
