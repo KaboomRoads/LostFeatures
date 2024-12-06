@@ -30,6 +30,7 @@ public class ModEntityTypes {
     public static final Supplier<EntityType<Wildfire>> WILDFIRE =
             Services.REGISTRY.registerEntity("wildfire", () ->
                     EntityType.Builder.of(Wildfire::new, MobCategory.MONSTER)
+                            .fireImmune()
                             .sized(0.7F, 1.8F)
                             .clientTrackingRange(8)
                             .build("wildfire"));
