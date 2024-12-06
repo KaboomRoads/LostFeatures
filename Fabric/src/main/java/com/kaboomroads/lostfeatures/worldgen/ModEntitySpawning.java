@@ -33,7 +33,7 @@ public class ModEntitySpawning {
                         Biomes.FOREST),
                 MobCategory.CREATURE,
                 ModEntityTypes.MOOBLOOM.get(),
-                5, 2, 4
+                3, 2, 4
         );
         BiomeModifications.addSpawn(BiomeSelectors.includeByKey(
                         Biomes.SAVANNA,

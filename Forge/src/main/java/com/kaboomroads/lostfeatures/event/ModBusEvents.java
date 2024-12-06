@@ -14,7 +14,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = Constants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModEvents {
+public class ModBusEvents {
     @SubscribeEvent
     public static void onSetAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntityTypes.BARNACLE.get(), Barnacle.createAttributes().build());
